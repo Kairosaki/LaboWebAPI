@@ -127,12 +127,12 @@ void GetAllBouteillesByEtagereName()
 
 int AskAgain()
 {
-    int choix;
-    int.TryParse(Console.ReadLine(), out choix);
     Console.WriteLine("Veuillez choisir parmi 1 à 4 : " +
                   "\n   1. Trouver toutes les bouteilles via fournisseur " +
                   "\n   2. Trouver toutes les bouteilles en stock" +
                   "\n   3. Trouver tous les emplacements libres " +
                   "\n   4. Quitter le programme avec la touche q");
+    int choix;
+    int.TryParse(Console.ReadLine(), out choix);    
     return choix;
 }
