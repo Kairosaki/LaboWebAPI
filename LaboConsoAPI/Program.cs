@@ -58,7 +58,7 @@ void GetBouteillesByFilter()
     string? filter = Console.ReadLine();
     if (filter is null)
     {
-        Console.WriteLine("Erreur veuillez entrer un nom de fournisseur");
+        Console.WriteLine("Erreur veuillez entrer un filtre non vide");
         filter = Console.ReadLine();
     }
     using (HttpClient client = new HttpClient())
