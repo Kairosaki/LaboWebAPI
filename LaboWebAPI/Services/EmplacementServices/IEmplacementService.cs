@@ -9,6 +9,8 @@ namespace LaboWebAPI.Services.EmplacementServices
         long Ajouter(EmplacementAddDTO dto);
         bool ModifierPlace(long id);
         bool ModifierAllPlaces();
+
+        IEnumerable<EmplacementIndexDTO> GetAllLibres();    
         bool Modifier(long id, EmplacementEditDTO dto);
     }
 }

@@ -133,5 +133,19 @@ namespace LaboWebAPI.Services.EmplacementServices
             _emplacementRepository.ModifierAllPlaces();
             return true;
         }
+
+        public IEnumerable<EmplacementIndexDTO> GetAllLibres()
+        {
+            return _emplacementRepository.GetAllEmplacementsLibres()
+                     .Select(e =>
+                        new EmplacementIndexDTO
+                        {
+                            Id = e.EmplacementId,
+                            Casier = e.Casier,
+                            Etagere = e.Etagere,
+                            Libre = e.Disponible
+                        }
+                      );
+        }
     }
 }

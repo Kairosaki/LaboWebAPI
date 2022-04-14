@@ -36,6 +36,13 @@ namespace LaboWebAPI.Controllers
             return Ok(emplacement);
         }
 
+        [HttpGet("libres")]
+        [Produces(typeof(IEnumerable<EmplacementIndexDTO>))]
+        public ActionResult<EmplacementIndexDTO> FindLibres()
+        {
+            return Ok(_emplacementService.GetAllLibres());
+        }
+
         [HttpPost]
         [Produces(typeof(int))]
         public IActionResult Create([FromBody] EmplacementAddDTO dto)

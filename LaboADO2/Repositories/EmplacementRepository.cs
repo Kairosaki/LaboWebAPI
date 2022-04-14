@@ -51,6 +51,28 @@ namespace LaboADO.Repositories
             command.ExecuteNonQuery();
         }
 
+        public IEnumerable<Emplacement> GetAllEmplacementsLibres()
+        {
+            DbCommand command = _connection.CreateCommand();
+            command.CommandText = $"Select * FROM {TableName} " +
+                                    $"WHERE libre = @true ";
+            command.Parameters.Add(new SqlParameter("true", true));
+            DbDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                yield return new Emplacement()
+                {
+                    EmplacementId = (long)reader["emplacement_id"],
+                    Casier = (string)reader["casier"],
+                    Etagere = (string)reader["etagere"],
+                    Disponible = (bool)reader["libre"]
+                };
+            }
+
+            reader.Close();
+        }
+
         public IEnumerable<Emplacement> GetWithFilters(string? keyword, int limit)
         {
             DbCommand command = _connection.CreateCommand();
@@ -76,6 +98,8 @@ namespace LaboADO.Repositories
                     Disponible = (bool)reader["libre"]
                 };
             }
+
+            reader.Close();
         }
         protected override Emplacement ToEntity(DbDataReader reader)
         {
